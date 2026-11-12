@@ -4,6 +4,10 @@ A tabbed text and code editor for Windows. Native WPF on .NET 10, no Electron, n
 
 ![BetterPad in the Light theme](docs/main-light.png)
 
+## Download
+
+Grab `BetterPad-1.0.0-win-x64.zip` from the [Releases page](https://github.com/jovandonev2009-wq/BetterPad/releases/latest) and unzip it anywhere. The build is self-contained, so the .NET runtime is included. It is not code-signed, so Windows SmartScreen may ask for confirmation the first time.
+
 ## Features
 
 - Tabbed editing with a dot for unsaved changes. Plain text, source code, and rich text (RTF) tabs.
@@ -19,8 +23,8 @@ A tabbed text and code editor for Windows. Native WPF on .NET 10, no Electron, n
 
 ## Requirements
 
-- Windows 10 or 11. WPF does not run anywhere else.
-- The .NET 10 SDK to build from source.
+- Windows 10 or 11, x64. WPF does not run anywhere else.
+- The .NET 10 SDK only to build from source. The release download includes the runtime.
 - Optional, only for Run/Build: `dotnet`, `python`, `node`, `powershell`, `cmd`.
 
 ## Build and run

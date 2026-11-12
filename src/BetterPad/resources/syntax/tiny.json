@@ -1,0 +1,24 @@
+{
+  "name": "Tiny",
+  "extensions": [".tiny"],
+  "caseSensitive": true,
+  "lineComments": ["//"],
+  "blockComments": [],
+  "strings": ["\""],
+  "preprocessor": null,
+  "keywords": [
+    "let", "fn", "if", "else", "while", "return", "true", "false"
+  ],
+  "types": [
+    "print"
+  ],
+  "colors": {
+    "default": "#1F2937",
+    "keyword": "#0B57D0",
+    "type": "#0F766E",
+    "string": "#B42318",
+    "comment": "#15803D",
+    "number": "#7C3AED",
+    "preprocessor": "#6B7280"
+  }
+}

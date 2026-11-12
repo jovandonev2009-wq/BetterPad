@@ -1,0 +1,27 @@
+{
+  "name": "XML / HTML",
+  "extensions": [".xml", ".html", ".htm", ".xaml", ".svg", ".csproj", ".props", ".targets", ".config"],
+  "caseSensitive": false,
+  "lineComments": [],
+  "blockComments": [{ "start": "<!--", "end": "-->" }],
+  "strings": ["\"", "'"],
+  "preprocessor": null,
+  "keywords": [],
+  "types": [
+    "html", "head", "body", "div", "span", "p", "a", "img", "script", "style", "link",
+    "meta", "title", "section", "header", "footer", "main", "nav", "ul", "ol", "li",
+    "table", "thead", "tbody", "tr", "td", "th", "form", "input", "button", "label",
+    "select", "option", "textarea", "h1", "h2", "h3", "h4", "h5", "h6", "br", "hr",
+    "xml", "Project", "PropertyGroup", "ItemGroup", "Target", "ItemDefinitionGroup",
+    "svg", "path", "rect", "circle", "line", "g", "text", "defs", "use"
+  ],
+  "colors": {
+    "default": "#1F2937",
+    "keyword": "#0B57D0",
+    "type": "#0F766E",
+    "string": "#B42318",
+    "comment": "#15803D",
+    "number": "#7C3AED",
+    "preprocessor": "#6B7280"
+  }
+}

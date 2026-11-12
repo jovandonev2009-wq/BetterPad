@@ -1,0 +1,30 @@
+// Tiny: the small language built into BetterPad.
+// Run this file with F5.
+
+fn fib(n) {
+    if (n < 2) {
+        return n;
+    }
+    return fib(n - 1) + fib(n - 2);
+}
+
+fn describe(n, value) {
+    if (value < 10) {
+        return "small";
+    } else if (value < 100) {
+        return "medium";
+    } else {
+        return "large";
+    }
+}
+
+let i = 0;
+while (i < 10) {
+    let value = fib(i);
+    print("fib(" + i + ") = " + value + " (" + describe(i, value) + ")");
+    i = i + 1;
+}
+
+let name = "Tiny";
+let version = 0.1;
+print("Hello from " + name + " " + version + "!");

@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/WordCountPlugin/WordCountPlugin.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/BetterPad.Language/BetterPad.Language.csproj" />
+    <Project Path="src/BetterPad.PluginSdk/BetterPad.PluginSdk.csproj" />
+    <Project Path="src/BetterPad/BetterPad.csproj" />
+    <Project Path="src/TinyLang/TinyLang.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,31 @@
+{
+  "name": "JavaScript / TypeScript",
+  "extensions": [".js", ".mjs", ".cjs", ".jsx", ".ts", ".tsx"],
+  "caseSensitive": true,
+  "lineComments": ["//"],
+  "blockComments": [{ "start": "/*", "end": "*/" }],
+  "strings": ["`", "\"", "'"],
+  "preprocessor": null,
+  "keywords": [
+    "async", "await", "break", "case", "catch", "class", "const", "continue", "debugger",
+    "default", "delete", "do", "else", "enum", "export", "extends", "false", "finally",
+    "for", "from", "function", "get", "if", "implements", "import", "in", "instanceof",
+    "interface", "let", "new", "null", "of", "package", "private", "protected", "public",
+    "readonly", "return", "set", "static", "super", "switch", "this", "throw", "true",
+    "try", "type", "typeof", "undefined", "var", "void", "while", "with", "yield"
+  ],
+  "types": [
+    "Array", "Boolean", "Date", "Error", "JSON", "Map", "Math", "Number", "Object",
+    "Promise", "RegExp", "Set", "String", "Symbol", "console", "document", "window",
+    "string", "number", "boolean", "any", "unknown", "never", "void"
+  ],
+  "colors": {
+    "default": "#1F2937",
+    "keyword": "#0B57D0",
+    "type": "#0F766E",
+    "string": "#B42318",
+    "comment": "#15803D",
+    "number": "#7C3AED",
+    "preprocessor": "#6B7280"
+  }
+}

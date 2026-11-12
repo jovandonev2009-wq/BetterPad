@@ -1,0 +1,34 @@
+{
+  "name": "C#",
+  "extensions": [".cs", ".csx"],
+  "caseSensitive": true,
+  "lineComments": ["//"],
+  "blockComments": [{ "start": "/*", "end": "*/" }],
+  "strings": ["\"\"\"", "\"", "'"],
+  "preprocessor": "#",
+  "keywords": [
+    "abstract", "as", "async", "await", "base", "break", "case", "catch", "checked", "class",
+    "const", "continue", "default", "delegate", "do", "else", "enum", "event", "explicit",
+    "extern", "finally", "fixed", "for", "foreach", "get", "goto", "if", "implicit", "in",
+    "init", "interface", "internal", "is", "lock", "namespace", "new", "operator", "out",
+    "override", "params", "partial", "private", "protected", "public", "readonly", "record",
+    "ref", "return", "sealed", "set", "sizeof", "stackalloc", "static", "struct", "switch",
+    "this", "throw", "try", "typeof", "unchecked", "unsafe", "using", "virtual", "volatile",
+    "when", "where", "while", "yield", "var", "true", "false", "null", "nameof", "with"
+  ],
+  "types": [
+    "bool", "byte", "char", "decimal", "double", "dynamic", "float", "int", "long", "nint",
+    "nuint", "object", "sbyte", "short", "string", "uint", "ulong", "ushort", "void",
+    "Task", "ValueTask", "List", "Dictionary", "IEnumerable", "IReadOnlyList", "Span",
+    "String", "Int32", "Console", "Math", "Exception", "Guid", "DateTime", "TimeSpan"
+  ],
+  "colors": {
+    "default": "#1F2937",
+    "keyword": "#0B57D0",
+    "type": "#0F766E",
+    "string": "#B42318",
+    "comment": "#15803D",
+    "number": "#7C3AED",
+    "preprocessor": "#6B7280"
+  }
+}

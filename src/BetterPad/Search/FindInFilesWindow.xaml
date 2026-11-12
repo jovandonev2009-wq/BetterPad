@@ -1,0 +1,137 @@
+<Window x:Class="BetterPad.Search.FindInFilesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Find in Files"
+        Icon="pack://application:,,,/Assets/BetterPad.ico"
+        Width="800"
+        Height="560"
+        MinWidth="660"
+        MinHeight="420"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Background="{DynamicResource BgBrush}"
+        FontFamily="Segoe UI"
+        FontSize="13"
+        UseLayoutRounding="True">
+    <Grid Margin="16,14,16,14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="52" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Folder"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource MutedBrush}" />
+            <TextBox x:Name="FolderBox"
+                     Grid.Column="1"
+                     Style="{StaticResource InputBox}"
+                     Margin="0,0,8,0" />
+            <Button Grid.Column="2"
+                    Content="Browse"
+                    Style="{StaticResource ToolButton}"
+                    Click="Browse_Click" />
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0,8,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="52" />
+                <ColumnDefinition Width="170" />
+                <ColumnDefinition Width="62" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Files"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource MutedBrush}" />
+            <TextBox x:Name="MaskBox"
+                     Grid.Column="1"
+                     Style="{StaticResource InputBox}"
+                     Text="*.*"
+                     Margin="0,0,8,0"
+                     ToolTip="Semicolon separated masks, for example: *.cs;*.xaml" />
+            <TextBlock Grid.Column="2"
+                       Text="Search"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource MutedBrush}" />
+            <TextBox x:Name="SearchBox"
+                     Grid.Column="3"
+                     Style="{StaticResource InputBox}"
+                     Margin="0,0,8,0" />
+            <Button x:Name="SearchButton"
+                    Grid.Column="4"
+                    Content="Search"
+                    Style="{StaticResource AccentButton}"
+                    Margin="0,0,6,0"
+                    IsDefault="True"
+                    Click="Search_Click" />
+            <Button x:Name="StopButton"
+                    Grid.Column="5"
+                    Content="Stop"
+                    Style="{StaticResource ToolButton}"
+                    IsEnabled="False"
+                    Click="Stop_Click" />
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="52,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <CheckBox x:Name="SubfoldersCheck" Content="Subfolders" IsChecked="True" Margin="0,0,14,0" />
+            <CheckBox x:Name="RegexCheck" Grid.Column="1" Content="Regex" Margin="0,0,14,0" />
+            <CheckBox x:Name="MatchCaseCheck" Grid.Column="2" Content="Match case" Margin="0,0,14,0" />
+            <CheckBox x:Name="WholeWordCheck" Grid.Column="3" Content="Whole word" />
+            <TextBlock x:Name="StatusText"
+                       Grid.Column="4"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Text="Ready"
+                       Foreground="{DynamicResource MutedBrush}"
+                       TextTrimming="CharacterEllipsis" />
+        </Grid>
+
+        <Border Grid.Row="3"
+                Margin="0,12,0,10"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="5">
+            <ListView x:Name="ResultsView"
+                      BorderThickness="0"
+                      Background="Transparent"
+                      MouseDoubleClick="ResultsView_MouseDoubleClick"
+                      KeyDown="ResultsView_KeyDown">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="File" Width="260" DisplayMemberBinding="{Binding DisplayPath}" />
+                        <GridViewColumn Header="Line" Width="60" DisplayMemberBinding="{Binding LineNumber}" />
+                        <GridViewColumn Header="Text" Width="400" DisplayMemberBinding="{Binding LineText}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
+
+        <DockPanel Grid.Row="4" LastChildFill="False">
+            <TextBlock x:Name="SummaryText"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource MutedBrush}" />
+            <Button DockPanel.Dock="Right"
+                    Content="Close"
+                    Style="{StaticResource ToolButton}"
+                    Click="Close_Click" />
+        </DockPanel>
+    </Grid>
+</Window>

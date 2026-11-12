@@ -1,0 +1,10 @@
+## Build results
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+.vs/
+
+## Test and tooling output
+[Tt]est[Rr]esults/
+*.log

@@ -1,0 +1,26 @@
+{
+  "name": "CSS",
+  "extensions": [".css", ".scss", ".less"],
+  "caseSensitive": false,
+  "lineComments": [],
+  "blockComments": [{ "start": "/*", "end": "*/" }],
+  "strings": ["\"", "'"],
+  "preprocessor": null,
+  "keywords": ["important", "media", "import", "keyframes", "supports", "font-face", "root"],
+  "types": [
+    "color", "background", "background-color", "display", "margin", "padding", "border",
+    "border-radius", "font-family", "font-size", "font-weight", "line-height", "width",
+    "height", "max-width", "min-height", "flex", "grid", "position", "top", "left",
+    "right", "bottom", "z-index", "overflow", "opacity", "transform", "transition",
+    "box-shadow", "text-align", "gap", "align-items", "justify-content", "cursor"
+  ],
+  "colors": {
+    "default": "#1F2937",
+    "keyword": "#0B57D0",
+    "type": "#0F766E",
+    "string": "#B42318",
+    "comment": "#15803D",
+    "number": "#7C3AED",
+    "preprocessor": "#6B7280"
+  }
+}

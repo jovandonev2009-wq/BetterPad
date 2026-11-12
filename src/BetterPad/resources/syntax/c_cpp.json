@@ -1,0 +1,29 @@
+{
+  "name": "C / C++",
+  "extensions": [".c", ".h", ".cpp", ".hpp", ".cc"],
+  "caseSensitive": true,
+  "lineComments": ["//"],
+  "blockComments": [{ "start": "/*", "end": "*/" }],
+  "strings": ["\"", "'"],
+  "preprocessor": "#",
+  "keywords": [
+    "auto", "break", "case", "class", "const", "constexpr", "continue", "default", "delete",
+    "do", "else", "enum", "explicit", "extern", "for", "friend", "goto", "if", "inline",
+    "namespace", "new", "operator", "private", "protected", "public", "return", "sizeof",
+    "static", "struct", "switch", "template", "this", "throw", "try", "typedef", "typename",
+    "union", "using", "virtual", "volatile", "while", "nullptr", "true", "false"
+  ],
+  "types": [
+    "bool", "char", "double", "float", "int", "long", "short", "signed", "unsigned", "void",
+    "size_t", "std", "string", "vector", "map", "uint32_t", "int32_t", "int64_t", "FILE"
+  ],
+  "colors": {
+    "default": "#1F2937",
+    "keyword": "#0B57D0",
+    "type": "#0F766E",
+    "string": "#B42318",
+    "comment": "#15803D",
+    "number": "#7C3AED",
+    "preprocessor": "#6B7280"
+  }
+}

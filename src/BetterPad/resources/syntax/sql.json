@@ -1,0 +1,32 @@
+{
+  "name": "SQL",
+  "extensions": [".sql"],
+  "caseSensitive": false,
+  "lineComments": ["--"],
+  "blockComments": [{ "start": "/*", "end": "*/" }],
+  "strings": ["'", "\""],
+  "preprocessor": null,
+  "keywords": [
+    "add", "all", "alter", "and", "as", "asc", "begin", "between", "by", "case", "commit",
+    "constraint", "create", "delete", "desc", "distinct", "drop", "else", "end", "exists",
+    "foreign", "from", "full", "group", "having", "if", "in", "index", "inner", "insert",
+    "into", "is", "join", "left", "like", "limit", "not", "null", "on", "or", "order",
+    "outer", "primary", "references", "right", "rollback", "select", "set", "table",
+    "then", "top", "transaction", "union", "unique", "update", "values", "view", "when",
+    "where", "with"
+  ],
+  "types": [
+    "bigint", "bit", "char", "date", "datetime", "decimal", "float", "int", "integer",
+    "nvarchar", "real", "smallint", "text", "time", "timestamp", "tinyint", "varchar",
+    "boolean", "serial", "uuid", "json"
+  ],
+  "colors": {
+    "default": "#1F2937",
+    "keyword": "#0B57D0",
+    "type": "#0F766E",
+    "string": "#B42318",
+    "comment": "#15803D",
+    "number": "#7C3AED",
+    "preprocessor": "#6B7280"
+  }
+}

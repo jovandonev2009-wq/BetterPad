@@ -1,0 +1,331 @@
+<Window x:Class="BetterPad.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="BetterPad"
+        Icon="pack://application:,,,/Assets/BetterPad.ico"
+        Width="1120"
+        Height="720"
+        MinWidth="720"
+        MinHeight="460"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource BgBrush}"
+        FontFamily="Segoe UI"
+        FontSize="13"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
+        AllowDrop="True"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"
+        KeyDown="Window_KeyDown"
+        DragOver="Window_DragOver"
+        Drop="Window_Drop">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Menu -->
+        <Menu Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" InputGestureText="Ctrl+N" Click="New_Click" />
+                <MenuItem Header="New _Rich Text Document" Click="NewRich_Click" />
+                <Separator />
+                <MenuItem Header="_Open…" InputGestureText="Ctrl+O" Click="Open_Click" />
+                <MenuItem Header="_Save" InputGestureText="Ctrl+S" Click="Save_Click" />
+                <MenuItem Header="Save _As…" InputGestureText="Ctrl+Shift+S" Click="SaveAs_Click" />
+                <Separator />
+                <MenuItem Header="_Close Tab" InputGestureText="Ctrl+W" Click="CloseTab_Click" />
+                <MenuItem Header="E_xit" Click="Exit_Click" />
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="_Undo" InputGestureText="Ctrl+Z" Click="Undo_Click" />
+                <MenuItem Header="_Redo" InputGestureText="Ctrl+Y" Click="Redo_Click" />
+                <Separator />
+                <MenuItem Header="Cu_t" InputGestureText="Ctrl+X" Click="Cut_Click" />
+                <MenuItem Header="_Copy" InputGestureText="Ctrl+C" Click="Copy_Click" />
+                <MenuItem Header="_Paste" InputGestureText="Ctrl+V" Click="Paste_Click" />
+                <MenuItem Header="Select _All" InputGestureText="Ctrl+A" Click="SelectAll_Click" />
+            </MenuItem>
+            <MenuItem Header="_Search">
+                <MenuItem Header="_Find…" InputGestureText="Ctrl+F" Click="ShowFind_Click" />
+                <MenuItem Header="_Replace…" InputGestureText="Ctrl+H" Click="ShowReplace_Click" />
+                <MenuItem Header="Find _Next" InputGestureText="F3" Click="FindNext_Click" />
+                <MenuItem Header="Find _Previous" InputGestureText="Shift+F3" Click="FindPrevious_Click" />
+                <Separator />
+                <MenuItem Header="Find in F_iles…" InputGestureText="Ctrl+Shift+F" Click="FindInFiles_Click" />
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem x:Name="ShowLineNumbersItem"
+                          Header="Show Line _Numbers"
+                          IsCheckable="True"
+                          IsChecked="True"
+                          Click="LineNumbers_Click" />
+                <MenuItem x:Name="ViewOutputItem"
+                          Header="Show _Output Panel"
+                          IsCheckable="True"
+                          Click="ViewOutput_Click" />
+                <Separator />
+                <MenuItem Header="_Theme">
+                    <MenuItem x:Name="ThemeLightItem" Header="_Light" IsCheckable="True" IsChecked="True" Tag="light" Click="Theme_Click" />
+                    <MenuItem x:Name="ThemeBlackRedItem" Header="Black &amp; _Red" IsCheckable="True" Tag="black-red" Click="Theme_Click" />
+                    <MenuItem x:Name="ThemeMidnightItem" Header="_Midnight" IsCheckable="True" Tag="midnight" Click="Theme_Click" />
+                    <MenuItem x:Name="ThemeSepiaItem" Header="_Sepia" IsCheckable="True" Tag="sepia" Click="Theme_Click" />
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Zoom _In" InputGestureText="Ctrl+Wheel" Click="ZoomIn_Click" />
+                <MenuItem Header="Zoom _Out" InputGestureText="Ctrl+Wheel" Click="ZoomOut_Click" />
+                <MenuItem Header="_Reset Zoom" InputGestureText="Ctrl+0" Click="ResetZoom_Click" />
+            </MenuItem>
+            <MenuItem Header="_Run">
+                <MenuItem Header="_Run Current File" InputGestureText="F5" Click="Run_Click" />
+                <MenuItem Header="_Build Project" InputGestureText="Ctrl+Shift+B" Click="Build_Click" />
+                <MenuItem Header="_Stop" InputGestureText="Shift+F5" Click="Stop_Click" />
+                <Separator />
+                <MenuItem Header="_Clear Output" Click="ClearOutput_Click" />
+            </MenuItem>
+            <MenuItem x:Name="PluginsMenu" Header="_Plugins">
+                <MenuItem x:Name="NoPluginItem" Header="No plugin commands loaded" IsEnabled="False" />
+                <Separator x:Name="PluginSeparator" />
+                <MenuItem Header="_Reload Plugins" Click="ReloadPlugins_Click" />
+                <MenuItem Header="_Install Plugin from File…" Click="InstallPlugin_Click" />
+                <MenuItem Header="_Open Plugins Folder" Click="OpenPluginsFolder_Click" />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_Syntax Rules Folder" Click="SyntaxFolder_Click" />
+                <MenuItem Header="_Reload Syntax Rules" Click="ReloadSyntax_Click" />
+                <Separator />
+                <MenuItem Header="_About BetterPad" Click="About_Click" />
+            </MenuItem>
+        </Menu>
+
+        <!-- Toolbar -->
+        <Border Grid.Row="1"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,0,0,1"
+                Padding="8,5">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="New" Style="{StaticResource ToolButton}" Click="New_Click" />
+                <Button Content="Open" Style="{StaticResource ToolButton}" Click="Open_Click" />
+                <Button Content="Save" Style="{StaticResource ToolButton}" Click="Save_Click" />
+                <Border Width="1" Background="{DynamicResource BorderBrush}" Margin="7,3" />
+                <Button Content="Find" Style="{StaticResource ToolButton}" Click="ShowFind_Click" />
+                <Button Content="Find in Files" Style="{StaticResource ToolButton}" Click="FindInFiles_Click" />
+                <Border Width="1" Background="{DynamicResource BorderBrush}" Margin="7,3" />
+                <Button x:Name="RunButton" Content="Run" Style="{StaticResource ToolButton}" Click="Run_Click" />
+                <Button x:Name="BuildButton" Content="Build" Style="{StaticResource ToolButton}" Click="Build_Click" />
+                <Button x:Name="StopRunButton" Content="Stop" Style="{StaticResource ToolButton}" IsEnabled="False" Click="Stop_Click" />
+            </StackPanel>
+        </Border>
+
+        <!-- Rich text formatting -->
+        <Border x:Name="FormatBar"
+                Grid.Row="2"
+                Background="{DynamicResource SurfaceAltBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,0,0,1"
+                Padding="12,5"
+                Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Format"
+                           Foreground="{DynamicResource MutedBrush}"
+                           VerticalAlignment="Center"
+                           Margin="0,0,10,0" />
+                <ToggleButton x:Name="BoldButton"
+                              Style="{StaticResource FormatToggle}"
+                              Click="Bold_Click"
+                              ToolTip="Bold (Ctrl+B)">
+                    <TextBlock Text="B" FontWeight="Bold" FontSize="13" />
+                </ToggleButton>
+                <ToggleButton x:Name="ItalicButton"
+                              Style="{StaticResource FormatToggle}"
+                              Click="Italic_Click"
+                              ToolTip="Italic (Ctrl+I)">
+                    <TextBlock Text="I" FontStyle="Italic" FontSize="13" FontFamily="Georgia" />
+                </ToggleButton>
+                <ToggleButton x:Name="UnderlineButton"
+                              Style="{StaticResource FormatToggle}"
+                              Click="Underline_Click"
+                              ToolTip="Underline (Ctrl+U)">
+                    <TextBlock Text="U" TextDecorations="Underline" FontSize="13" />
+                </ToggleButton>
+                <Border Width="1" Background="{DynamicResource BorderBrush}" Margin="8,3" />
+                <ComboBox x:Name="FontFamilyCombo"
+                          Width="190"
+                          IsEditable="True"
+                          IsTextSearchEnabled="True"
+                          SelectionChanged="FontFamilyCombo_SelectionChanged"
+                          PreviewKeyDown="FontCombo_PreviewKeyDown"
+                          ToolTip="Font family" />
+                <ComboBox x:Name="FontSizeCombo"
+                          Width="66"
+                          IsEditable="True"
+                          SelectionChanged="FontSizeCombo_SelectionChanged"
+                          PreviewKeyDown="FontCombo_PreviewKeyDown"
+                          ToolTip="Font size"
+                          Margin="6,0,0,0" />
+            </StackPanel>
+        </Border>
+
+        <!-- Find bar -->
+        <Border x:Name="FindBar"
+                Grid.Row="3"
+                Background="{DynamicResource SurfaceAltBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,0,0,1"
+                Visibility="Collapsed">
+            <StackPanel Margin="12,7,10,7">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Find"
+                               VerticalAlignment="Center"
+                               Foreground="{DynamicResource MutedBrush}"
+                               Margin="0,0,7,0" />
+                    <TextBox x:Name="FindBox"
+                             Style="{StaticResource InputBox}"
+                             Width="240"
+                             KeyDown="FindBox_KeyDown"
+                             TextChanged="FindBox_TextChanged" />
+                    <CheckBox x:Name="MatchCaseCheck"
+                              Content="Aa"
+                              ToolTip="Match case"
+                              Margin="10,0,0,0"
+                              Click="FindOption_Click" />
+                    <CheckBox x:Name="RegexCheck"
+                              Content=".*"
+                              ToolTip="Use regular expressions"
+                              Margin="12,0,0,0"
+                              Click="FindOption_Click" />
+                    <CheckBox x:Name="WholeWordCheck"
+                              Content="Word"
+                              ToolTip="Whole word"
+                              Margin="12,0,0,0"
+                              Click="FindOption_Click" />
+                    <Button Content="Next"
+                            Style="{StaticResource ToolButton}"
+                            Margin="12,0,0,0"
+                            Click="FindNext_Click" />
+                    <Button Content="Previous"
+                            Style="{StaticResource ToolButton}"
+                            Click="FindPrevious_Click" />
+                    <TextBlock x:Name="FindStatus"
+                               VerticalAlignment="Center"
+                               Foreground="{DynamicResource MutedBrush}"
+                               MaxWidth="220"
+                               TextTrimming="CharacterEllipsis"
+                               Margin="10,0,0,0" />
+                    <Button Content="×"
+                            Style="{StaticResource IconButton}"
+                            Margin="4,0,0,0"
+                            Click="CloseFind_Click"
+                            ToolTip="Close find bar" />
+                </StackPanel>
+                <StackPanel x:Name="ReplaceRow" Orientation="Horizontal" Margin="0,7,0,0" Visibility="Collapsed">
+                    <TextBlock Text="Replace"
+                               VerticalAlignment="Center"
+                               Foreground="{DynamicResource MutedBrush}"
+                               Margin="0,0,7,0" />
+                    <TextBox x:Name="ReplaceBox"
+                             Style="{StaticResource InputBox}"
+                             Width="240"
+                             KeyDown="ReplaceBox_KeyDown" />
+                    <Button Content="Replace"
+                            Style="{StaticResource ToolButton}"
+                            Margin="10,0,0,0"
+                            Click="Replace_Click" />
+                    <Button Content="Replace all"
+                            Style="{StaticResource ToolButton}"
+                            Click="ReplaceAll_Click" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Documents -->
+        <TabControl x:Name="Tabs" Grid.Row="4" SelectionChanged="Tabs_SelectionChanged" />
+
+        <!-- Output -->
+        <Border x:Name="OutputPanel"
+                Grid.Row="5"
+                Height="180"
+                Background="{DynamicResource SurfaceAltBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,1,0,0"
+                Visibility="Collapsed">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <DockPanel Margin="12,6,8,2">
+                    <TextBlock x:Name="OutputTitle"
+                               Text="Output"
+                               FontWeight="SemiBold"
+                               FontSize="12.5"
+                               Foreground="{DynamicResource TextBrush}"
+                               VerticalAlignment="Center" />
+                    <Button Content="×"
+                            Style="{StaticResource IconButton}"
+                            DockPanel.Dock="Right"
+                            Click="HideOutput_Click"
+                            ToolTip="Hide output" />
+                    <Button x:Name="StopButton"
+                            Content="Stop"
+                            Style="{StaticResource ToolButton}"
+                            DockPanel.Dock="Right"
+                            IsEnabled="False"
+                            Click="Stop_Click" />
+                    <Button Content="Clear"
+                            Style="{StaticResource ToolButton}"
+                            DockPanel.Dock="Right"
+                            Click="ClearOutput_Click" />
+                </DockPanel>
+                <TextBox x:Name="OutputBox"
+                         Grid.Row="1"
+                         IsReadOnly="True"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="12,4,12,10"
+                         FontFamily="Cascadia Mono, Consolas"
+                         FontSize="12"
+                         Foreground="{DynamicResource TextBrush}"
+                         VerticalScrollBarVisibility="Auto"
+                         HorizontalScrollBarVisibility="Auto"
+                         TextWrapping="NoWrap"
+                         IsUndoEnabled="False" />
+            </Grid>
+        </Border>
+
+        <!-- Status bar -->
+        <Border Grid.Row="6"
+                Background="{DynamicResource SurfaceAltBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,1,0,0"
+                Height="28">
+            <DockPanel Margin="10,0">
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock x:Name="PositionText" Text="Ln 1, Col 1" Foreground="{DynamicResource MutedBrush}" />
+                    <TextBlock Text="|" Margin="9,0" Foreground="{DynamicResource BorderBrush}" />
+                    <TextBlock x:Name="SelectionText" Text="Sel 0" Foreground="{DynamicResource MutedBrush}" />
+                    <TextBlock Text="|" Margin="9,0" Foreground="{DynamicResource BorderBrush}" />
+                    <TextBlock x:Name="SyntaxText" Text="Plain Text" Foreground="{DynamicResource MutedBrush}" />
+                    <TextBlock Text="|" Margin="9,0" Foreground="{DynamicResource BorderBrush}" />
+                    <TextBlock x:Name="EncodingText" Text="UTF-8" Foreground="{DynamicResource MutedBrush}" />
+                    <TextBlock Text="|" Margin="9,0" Foreground="{DynamicResource BorderBrush}" />
+                    <TextBlock x:Name="EolText" Text="CRLF" Foreground="{DynamicResource MutedBrush}" />
+                    <TextBlock Text="|" Margin="9,0" Foreground="{DynamicResource BorderBrush}" />
+                    <TextBlock x:Name="ZoomText" Text="13.5 pt" Foreground="{DynamicResource MutedBrush}" />
+                </StackPanel>
+                <TextBlock x:Name="StatusText"
+                           Text="Ready"
+                           Foreground="{DynamicResource MutedBrush}"
+                           VerticalAlignment="Center"
+                           TextTrimming="CharacterEllipsis" />
+            </DockPanel>
+        </Border>
+    </Grid>
+</Window>

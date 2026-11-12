@@ -1,0 +1,45 @@
+<UserControl x:Class="BetterPad.Controls.CodeEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:BetterPad.Controls"
+             Background="Transparent"
+             Focusable="False">
+    <Grid x:Name="RootGrid" Background="{DynamicResource EditorBgBrush}" ClipToBounds="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border x:Name="GutterHost"
+                Grid.Column="0"
+                Background="{DynamicResource GutterBgBrush}"
+                BorderBrush="{DynamicResource GutterBorderBrush}"
+                BorderThickness="0,0,1,0"
+                ClipToBounds="True">
+            <controls:LineNumberGutter x:Name="Gutter" />
+        </Border>
+
+        <Grid Grid.Column="1" Background="{DynamicResource EditorBgBrush}" ClipToBounds="True">
+            <controls:SyntaxRenderer x:Name="Renderer" IsHitTestVisible="False" />
+            <TextBox x:Name="Box"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Padding="10,7,6,7"
+                     AcceptsReturn="True"
+                     AcceptsTab="True"
+                     TextWrapping="NoWrap"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     VerticalContentAlignment="Top"
+                     FontFamily="Cascadia Mono, Consolas"
+                     FontSize="13.5"
+                     Foreground="Transparent"
+                     CaretBrush="{DynamicResource EditorCaretBrush}"
+                     SelectionBrush="{DynamicResource SelectionBrush}"
+                     SelectionOpacity="0.24"
+                     IsInactiveSelectionHighlightEnabled="True"
+                     SpellCheck.IsEnabled="False"
+                     UndoLimit="250" />
+        </Grid>
+    </Grid>
+</UserControl>
